@@ -10,4 +10,5 @@ module.exports = function(app) {
     app.post('/listings/:id', bicycleController.editBicycles);
     app.delete('/delete/:id', bicycleController.deleteBicycles);
     app.get('/random', bicycleController.getBicyclesRandom);
+    app.get('*', bicycleController.login);
 }
