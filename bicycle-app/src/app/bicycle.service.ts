@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'Rxjs';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Http } from '@angular/http';
 import { User } from './user';
 import { Bicycle } from './bicycle';
