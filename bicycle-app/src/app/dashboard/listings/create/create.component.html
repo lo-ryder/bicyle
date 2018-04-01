@@ -1,0 +1,30 @@
+<section>
+    <fieldset>
+        <legend>Create Listings</legend>
+        <form #createBike='ngForm'>
+          <div>
+            <label for="file">Img Upload</label>
+            <input type="file" id="file" name="imgUrl" [(ngModel)]='newBike.imgUrl' (change)="handleFileInput($event.target.files)" required>
+          </div>
+          <div>
+              <label for="">Title</label>
+              <input type="text" name="Title" [(ngModel)]='newBike.Title' required>
+          </div>
+          <div>
+              <label for="">Description</label>
+              <input type="text" name="Description" [(ngModel)]='newBike.Description' maxlength="200" required>
+          </div>
+          <div>
+              <label for="">Price</label>
+              <input type="text" name="Price" minvalue="1" #price='ngModel' [(ngModel)]='newbike.Price' required>
+              <div *ngIf="(createBike.price.invalid && createBike.price.dirty)" [ngStyle]="{ 'color': 'red' }">must be at least a $1</div>
+          </div>
+          <div>
+              <label for="">Location</label>
+              <input type="text" name="Location"  [(ngModel)]="newbike.Location" required>
+          </div>
+          {{ createBike }}
+          <button  (click)="CreateBike(newbike)">Create Bike!</button>
+        </form>
+    </fieldset>
+  </section>

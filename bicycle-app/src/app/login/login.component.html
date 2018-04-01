@@ -1,0 +1,59 @@
+<div>
+  <h4>Bike of the Day!</h4>
+  <div *ngIf="!bikeRList">No bikes yet</div>
+  <div *ngIf="bikeRList">
+      <h3>{{ bikeRList.Title }}</h3>
+      <h3>{{ bikeRList.Description }}</h3>
+      <h3>{{ bikeRList.Price }}</h3>
+      <h3>{{ bikeRList.Location }}</h3>
+      <img src="{{ bikeRList.imgUrl }}" alt="">
+  </div>
+</div>
+<section>
+  <fieldset>
+    <legend>Login</legend>
+    <form #loginForm='ngForm'>
+      <div>
+          <label for="">Email: </label>
+          <input type="email" name="email" [(ngModel)]="loginUser.Email" required>
+      </div>
+      <div>
+          <label for="">Password: </label>
+          <input type="password" name="password" [(ngModel)]="loginUser.Password" required>
+      </div>
+        <div *ngIf="(loginForm.invalid && loginForm.dirty)"><p [ngStyle]="{ 'color': 'red' }">Invalid Credientials</p></div>
+        <button *ngIf="loginForm.valid" type="submit" (click)="Login(loginUser)">login</button>
+    </form>
+  </fieldset>
+</section>
+<section>
+  <fieldset>
+      <legend>Register</legend>
+      <form #regForm='ngForm'>
+        <div>
+          <label for="">First Name</label>
+          <input type="text" name="first_name" [(ngModel)]="regUser.FirstName" required>
+        </div>
+        <div>
+            <label for="">Last Name</label>
+            <input type="text" name="last_name" [(ngModel)]="regUser.LastName" required>
+        </div>
+        <div>
+            <label for="">Email</label>
+            <input type="email" name="email" [(ngModel)]="regUser.Email" required>
+        </div>
+        <div>
+            <label for="">Password</label>
+            <input type="password" name="password" #password="ngModel" minlength="3" [(ngModel)]="regUser.Password" required>
+            <div *ngIf="(password.invalid && password.dirty)" [ngStyle]="{ 'color': 'red' }">password must be 3 characters long</div>
+        </div>
+        <div>
+            <label for="">Password Confirmation</label>
+            <input type="password" name="con" #con="ngModel" [(ngModel)]="regUser.PasswordCon" required>
+            <div *ngIf="(con.invalid && con.dirty) || compare" [ngStyle]="{ 'color': 'red' }">password confirmation must match password</div>
+        </div>
+        {{regForm}}
+        <button *ngIf="regForm.valid" type="submit" (click)="Register(regUser)">Register</button>
+      </form>
+  </fieldset>
+</section>

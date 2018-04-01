@@ -1,0 +1,35 @@
+<section>
+    <fieldset>
+        <legend>Edit/Delete Listings</legend>
+        <div  [ngStyle]="{ 'border-color': 'grey' }">
+            <form #editBikeF='ngForm'>
+                <div>
+                    <label for="file">Img Upload</label>
+                    <input type="file" id="file" name="imgUrl" [(ngModel)]='editBike.imgUrl' (change)="handleFileInput($event.target.files)">
+                  <img type="file" src="editBike.imgUrl" name="imgUrl">
+                </div>
+                <div>
+                    <label for="">Title</label>
+                    <input type="text" name="Title" [(ngModel)]='editBike.Title' required>
+                </div>
+                <div>
+                    <label for="">Description</label>
+                    <input type="text" name="Description" [(ngModel)]='editBike.Description' maxlength="200" required>
+                </div>
+                <div>
+                    <label for="">Price</label>
+                    <input type="text" name="Price" minvalue="1" #price='ngModel' [(ngModel)]="editBike.Price" required>
+                    <div *ngIf="(price.invalid && price.dirty)" [ngStyle]="{ 'color': 'red' }">must be at least a $1</div>
+                </div>
+                <div>
+                    <label for="">Location</label>
+                    <input type="text" name="Location"  [(ngModel)]="editBike.Location" required>
+                </div>
+                {{ editBikeF.valid }}
+                <button *ngIf="editBikeF.valid" (click)="EditBike(newbike)">Update</button>
+                <button (click)="DeleteBike(newbike)">Delete</button>
+              </form>
+        </div>
+    </fieldset>
+  </section>
+

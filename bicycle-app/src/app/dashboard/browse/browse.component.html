@@ -1,0 +1,26 @@
+<section>
+  <fieldset>
+    <div>
+      <label for="">Search:</label>
+      <input [(ngModel)]="searchText" placeholder="enter search term here">
+    </div>
+  </fieldset>
+</section>
+<section>
+  <fieldset>
+    <legend>Bicycles for sale</legend>
+    {{ currentuser[0].Email }}
+    <ul>
+        <li *ngFor="let bike of bicycleslist">
+            {{ bike.imgUrl }}
+            {{ bike.Title }}
+            {{ bike.Description }}
+            {{ bike.Price }}
+            {{ bike.Location }}
+          <button *ngIf="bike.Owner.Email === currentuser[0].Email" [ngStyle]="{'background-color': 'red'}" (click)="DeleteBike(bike, currentUser)">Delete</button>
+          <button *ngIf="bike.Owner.Email != currentuser[0].Email" [ngStyle]="{'background-color': 'yellow'}" (click)="ContactOwner(bike)">Contact</button>
+        </li>
+      </ul>
+  </fieldset>
+</section>
+
